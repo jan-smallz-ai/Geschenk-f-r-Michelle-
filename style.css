@@ -176,3 +176,158 @@ button:hover {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.08); }
 }
+/* ===== Fix: Mobile-Taps dürfen nicht "geschluckt" werden ===== */
+* { -webkit-tap-highlight-color: transparent; }
+
+#shakeBtn{
+  position: relative;
+  z-index: 50;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* Falls irgendein Deko-Layer drüber liegt: der darf keine Klicks fangen */
+.snow-layer,
+#santaFlyby,
+#santaFlyby *{
+  pointer-events: none;
+}
+
+/* ===== Schnee (simple CSS Snow) ===== */
+.snow-layer{
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.snowflake{
+  position: absolute;
+  top: -10vh;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  opacity: 0.9;
+  filter: blur(0.2px);
+  animation: snowFall linear infinite;
+}
+
+@keyframes snowFall{
+  0%   { transform: translate3d(var(--x,0), -10vh, 0); }
+  100% { transform: translate3d(calc(var(--x,0) + var(--drift, 40px)), 110vh, 0); }
+}
+
+/* ===== Weihnachtsmann-auf-Kuh (Anflug oben) ===== */
+#santaFlyby{
+  position: fixed;
+  top: 10px;
+  left: -260px;
+  z-index: 6;
+  width: 240px;
+  height: 120px;
+  transform: rotate(-3deg);
+  animation: flyby 10s linear infinite;
+}
+
+@keyframes flyby{
+  0%   { transform: translateX(-20px) rotate(-3deg); }
+  100% { transform: translateX(calc(100vw + 320px)) rotate(2deg); }
+}
+
+.fly-wrap{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Kuh-Körper */
+.cow{
+  position: absolute;
+  left: 40px;
+  top: 36px;
+  width: 150px;
+  height: 70px;
+  border-radius: 50px;
+  background: #f7f7f7;
+  box-shadow: 0 10px 0 rgba(0,0,0,0.12);
+  animation: cowBounce 0.8s ease-in-out infinite;
+}
+@keyframes cowBounce{
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-4px); }
+}
+
+/* Kuh-Flecken */
+.cow::before, .cow::after{
+  content:"";
+  position:absolute;
+  background:#1b1b1b;
+  border-radius: 20px;
+  opacity: 0.9;
+}
+.cow::before{ width: 34px; height: 22px; left: 26px; top: 18px; transform: rotate(-10deg); }
+.cow::after { width: 26px; height: 18px; left: 86px; top: 34px; transform: rotate(12deg); }
+
+/* Euter (harmlos-cartoon, wackelt) */
+.udders{
+  position:absolute;
+  left: 70px;
+  top: 56px;
+  width: 50px;
+  height: 30px;
+  background: #ffb7c7;
+  border-radius: 18px;
+  animation: wobble 0.6s ease-in-out infinite;
+  transform-origin: 50% 20%;
+}
+@keyframes wobble{
+  0%,100% { transform: rotate(-2deg) scale(1); }
+  50%     { transform: rotate(3deg) scale(1.03); }
+}
+
+/* Weihnachtsmann */
+.santa{
+  position:absolute;
+  left: 10px;
+  top: 12px;
+  width: 80px;
+  height: 90px;
+  animation: santaWiggle 0.8s ease-in-out infinite;
+}
+@keyframes santaWiggle{
+  0%,100% { transform: rotate(-2deg); }
+  50%     { transform: rotate(2deg); }
+}
+.santa .hat{
+  position:absolute;
+  left: 18px; top: 0;
+  width: 44px; height: 26px;
+  background: #d92626;
+  border-radius: 18px 18px 10px 10px;
+}
+.santa .pom{
+  position:absolute;
+  left: 54px; top: 16px;
+  width: 12px; height: 12px;
+  background: #fff;
+  border-radius: 999px;
+}
+.santa .face{
+  position:absolute;
+  left: 18px; top: 18px;
+  width: 44px; height: 36px;
+  background: #ffd7b3;
+  border-radius: 18px;
+}
+.santa .beard{
+  position:absolute;
+  left: 12px; top: 40px;
+  width: 56px; height: 40px;
+  background:#fff;
+  border-radius: 28px;
+  animation: beardWobble 0.7s ease-in-out infinite;
+}
+@keyframes beardWobble{
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(2px); }
+             }

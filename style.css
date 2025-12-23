@@ -1,0 +1,178 @@
+/* Grundlayout */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(180deg, #0b0f2b, #1a1f4a);
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+.wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* Text */
+h1 {
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+}
+
+.name {
+  color: #ffd966;
+}
+
+.intro {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 40px;
+}
+
+/* Szene */
+.scene {
+  position: relative;
+  height: 260px;
+  margin-bottom: 40px;
+}
+
+/* Kuh */
+.cow {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  width: 260px;
+  height: 120px;
+  background: #f2f2f2;
+  border-radius: 60px;
+  animation: cowHop 1.2s ease-in-out infinite;
+}
+
+.udder {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 40px;
+  background: #ffb3c7;
+  border-radius: 40px;
+  animation: udderWiggle 0.4s ease-in-out infinite;
+}
+
+/* Weihnachtsmann */
+.santa {
+  position: absolute;
+  left: 50%;
+  bottom: 120px;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  background: #d62828;
+  border-radius: 60px;
+  animation: santaWobble 0.8s ease-in-out infinite;
+}
+
+.beard {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 50px;
+  animation: beardWiggle 0.5s ease-in-out infinite;
+}
+
+/* Geschenk */
+.gift {
+  font-size: 3rem;
+  margin: 20px auto;
+  display: inline-block;
+  animation: giftPulse 1.5s ease-in-out infinite;
+  cursor: pointer;
+}
+
+/* Spiel */
+.game {
+  margin-top: 20px;
+}
+
+button {
+  background: #ffd966;
+  border: none;
+  padding: 14px 24px;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #ffec99;
+}
+
+.progress {
+  margin: 20px auto;
+  width: 260px;
+  height: 12px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bar {
+  width: 0%;
+  height: 100%;
+  background: #6df0a3;
+  transition: width 0.2s ease;
+}
+
+/* Reveal */
+.reveal {
+  display: none;
+  margin-top: 40px;
+}
+
+.code {
+  background: rgba(0,0,0,0.4);
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  margin: 10px auto 20px;
+  display: inline-block;
+}
+
+/* Animationen */
+@keyframes cowHop {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-12px); }
+}
+
+@keyframes santaWobble {
+  0%, 100% { transform: translateX(-50%) rotate(2deg); }
+  50% { transform: translateX(-50%) rotate(-2deg); }
+}
+
+@keyframes beardWiggle {
+  0%, 100% { transform: translateX(-50%) rotate(0deg); }
+  50% { transform: translateX(-50%) rotate(3deg); }
+}
+
+@keyframes udderWiggle {
+  0%, 100% { transform: translateX(-50%) rotate(0deg); }
+  50% { transform: translateX(-50%) rotate(-4deg); }
+}
+
+@keyframes giftPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
